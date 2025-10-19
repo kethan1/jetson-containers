@@ -39,5 +39,11 @@ for ROS_DISTRO in ROS_DISTROS:
             pkg['dockerfile'] = 'Dockerfile.ros2'
             pkg['test'] = 'test_ros2.sh'
 
+        if ROS_DISTRO == 'jazzy':
+            # keep same standard Dockerfile and test script
+            # but use ubuntu opencv instead on jazzy
+            # More info: https://github.com/dusty-nv/jetson-containers/issues/702
+            pkg['depends'].remove('opencv')
+
         package.append(pkg)
 
